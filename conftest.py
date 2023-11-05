@@ -2,7 +2,7 @@ import os
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selene import browser
+from selene import Browser, Config, browser
 from utils import attach
 from dotenv import load_dotenv
 
@@ -11,8 +11,7 @@ DEFAULT_BROWSER_VERSION = '100.0'
 
 def pytest_addoption(parser):
     parser.addoption(
-        '--browser-version',
-        help='Версия браузера в которой будут запущены тесты',
+        '--browser_version',
         default='100.0'
     )
 
@@ -49,9 +48,9 @@ def setup_browser(request):
 
     browser.config.driver = driver
     browser.config.base_url = "https://demoqa.com"
-    browser.config.window_height = 1280
-    browser.config.window_width = 900
-    browser.config.timeout = 4.0
+    # browser.config.window_height = 1280
+    # browser.config.window_width = 900
+    # browser.config.timeout = 4.0
 
     yield browser
 
