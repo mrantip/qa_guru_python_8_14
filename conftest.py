@@ -11,7 +11,7 @@ DEFAULT_BROWSER_VERSION = '100.0'
 
 def pytest_addoption(parser):
     parser.addoption(
-        'browser-version',
+        '--browser-version',
         help='Версия браузера в которой будут запущены тесты',
         default='100.0'
     )
@@ -24,7 +24,7 @@ def load_env():
 
 @pytest.fixture(scope='function', autouse=True)
 def setup_browser(request):
-    browser_version = request.config.getoption('browser_version')
+    browser_version = request.config.getoption('--browser_version')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
     options = Options()
     selenoid_capabilities = {
